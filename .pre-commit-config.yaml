@@ -1,0 +1,54 @@
+repos:
+  # 전반적인 hook 모음
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-ast # 유효한 파이썬 파일인지 확인
+      - id: check-builtin-literals # builtin literal 문법 확인
+      - id: check-merge-conflict # 머지 컨플릭트 확인
+      - id: check-shebang-scripts-are-executable # 실행파일의 shebang 확인
+      - id: check-json
+      - id: check-toml
+      - id: check-yaml
+      - id: trailing-whitespace # trainling whitespace 제거
+        args: [--markdown-linebreak-ext=md]
+      - id: end-of-file-fixer # 텍스트 파일의 끝이 줄바꿈으로 끝나게 함
+      - id: mixed-line-ending # windows - *nix 운영체제간 줄바꿈 문자가 다른 것을 통일함
+        args: [--fix=lf]
+
+  # shell 파일 linter
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.11.0.1
+    hooks:
+      - id: shellcheck
+
+  # shell 파일 formatter
+  - repo: https://github.com/scop/pre-commit-shfmt
+    rev: v3.12.0-2
+    hooks:
+      - id: shfmt
+
+  # 파이썬 linter ruff. pyproject.toml 파일에 정의된 규칙을 따름
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.12.11
+    hooks:
+      - id: ruff
+        args: [--fix]
+
+  # python formatter
+  - repo: https://github.com/psf/black-pre-commit-mirror
+    rev: 25.1.0
+    hooks:
+      - id: black
+
+  # python 정적 타입 체커
+  # additional_dependencies 항목에 실제 종속성들을 추가해줘야함
+  - repo: https://github.com/RobertCraigie/pyright-python
+    rev: v1.1.405
+    hooks:
+      - id: pyright
+        additional_dependencies:
+          - fastmcp
+          - mcp
+          - pytest
+          - pytest-asyncio
