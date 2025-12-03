@@ -41,7 +41,7 @@ def main():
     print("[FMS] Waiting for messages in 'FMS_queue'. To exit press CTRL+C")
     ch_pika.start_consuming()
     
-
 if __name__ == "__main__":
     load_dotenv() #post process for env files
+    print("[FMS] PASCAI-FMS Started")
     main()
