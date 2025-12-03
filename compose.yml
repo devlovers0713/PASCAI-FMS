@@ -1,0 +1,13 @@
+services:
+  PASCAI-FMS:
+    image: pascai-fms:dev_0.0.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pascai-fms
+#    ports:
+#      - "50715:5672"   # AMQP
+#      - "15672:15672"  # Web Management UI
+#    environment:
+#      RABBITMQ_DEFAULT_USER: devlovers
+#      RABBITMQ_DEFAULT_PASS: jys0713
